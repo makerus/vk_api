@@ -1,4 +1,4 @@
-from http_util import HttpUtil
+from vk_api.http_util import HttpUtil
 from urllib.parse import urlparse, parse_qs
 import json
 

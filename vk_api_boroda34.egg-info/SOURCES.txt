@@ -1,7 +1,0 @@
-README.md
-setup.py
-vk_api_boroda34.egg-info/PKG-INFO
-vk_api_boroda34.egg-info/SOURCES.txt
-vk_api_boroda34.egg-info/dependency_links.txt
-vk_api_boroda34.egg-info/requires.txt
-vk_api_boroda34.egg-info/top_level.txt
