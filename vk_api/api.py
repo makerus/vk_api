@@ -2,7 +2,7 @@ from vk_api.http_util import HttpUtil
 from urllib.parse import urlparse, parse_qs
 import json
 
-import logger
+from vk_api import logger
 
 
 class VkApi:
