@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-setup(name='vk_api',
+setup(name='vk_api_boroda34',
       version='0.1',
       description='Библиотека для работы с API социальной сети ВКонтакте',
       author='boroda34',
