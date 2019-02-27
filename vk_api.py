@@ -1,8 +1,8 @@
-from vk_api.http_util import HttpUtil
+from http_util import HttpUtil
 from urllib.parse import urlparse, parse_qs
 import json
 
-from vk_api import logger
+import logger
 
 
 class VkApi:

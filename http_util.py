@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from vk_api import logger
+import logger
 
 
 class HttpUtil:
