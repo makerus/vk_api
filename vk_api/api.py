@@ -1,6 +1,9 @@
+import json
+import time
+import random
+
 from vk_api.http_util import HttpUtil
 from urllib.parse import urlparse, parse_qs
-import json
 
 from vk_api import logger
 
@@ -66,4 +69,9 @@ class VkApi:
         url = "https://api.vk.com/method/" + name + "?" + '&'.join(query_param) +\
               "&access_token=" + self.token + "&v=" + self.options['api_v']
         query = http.get(url)
-        return json.loads(query['content'])['response']
+        response = json.loads(query['content'])
+        time.sleep(random.randint(1, self.options['max_timeout']))
+        if 'error' in response:
+            return json.loads(query['content'])['error']
+        else:
+            return json.loads(query['content'])['response']
