@@ -64,7 +64,7 @@ class VkApi:
         http = HttpUtil()
         query_param = []
         for k, v in params.items():
-            query_param.append(str(k + "=" + v))
+            query_param.append(str(str(k) + "=" + str(v)))
 
         url = "https://api.vk.com/method/" + name + "?" + '&'.join(query_param) +\
               "&access_token=" + self.token + "&v=" + self.options['api_v']
