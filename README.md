@@ -13,7 +13,8 @@ api = VkApi({
     "scope": config.SCOPE,
     "api_v": config.VERSION_API,
     "login": config.LOGIN,
-    "password": config.PASSWORD
+    "password": config.PASSWORD,
+    "max_timeout": config.MAX_TIMEOUT
 })
 
 api.login()
@@ -28,4 +29,6 @@ LOGIN = ''  # Номер телефона или email от профиля бо�
 PASSWORD = ''  # Пароль от профиля бота
 VERSION_API = '5.92'  # Версия API
 LEVEL_LOG = 0  # Уровень ошибок 0 - ВСЕ, 1 - ТОЛЬКО INFO и ERRORS, 2 - ТОЛЬКО ERRORS
+MAX_TIMEOUT = 3 # Время таймаута (время отправки запросов к API ВКонтакте) в секундах
+
 ```
