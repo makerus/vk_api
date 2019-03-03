@@ -1,4 +1,6 @@
 # vk_api
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Библиотека для работы с API социальной сети ВКонтакте на Python
 
 ```python
@@ -8,6 +10,7 @@ pip install vk-api-boroda34
 ```python
 from vk_api.core.api import VkApi
 
+# Инициализация объекта VK API
 api = VkApi.login({
     'client_id': config.CLIENT_ID,
     "scope": config.SCOPE,
@@ -16,6 +19,10 @@ api = VkApi.login({
     "password": config.PASSWORD,
     "max_timeout": config.MAX_TIMEOUT
 })
+
+# Авторизация и получение токена
+api.get_token(api)
+
 ```
 
 Для работы библиотеки потребуется файл ```config.py```
