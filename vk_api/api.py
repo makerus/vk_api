@@ -5,7 +5,8 @@ import random
 from vk_api.http_util import HttpUtil
 from urllib.parse import urlparse, parse_qs
 
-from vk_api import logger
+from vk_api.logger import Logger
+from vk_api.tokenizer import Tokenizer
 
 
 class VkApi:
@@ -29,11 +30,20 @@ class VkApi:
                 "revoke": 1
             }
         self.token = None
-        self.logger = logger.Logger('vk_api')
+        self.logger = Logger('vk_api')
 
     def login(self):
         """
-        Авторизация и получение токена
+        Проверка на существование уже полученного токена
+        Или его повторное получение, в случае его отсутствия
+        :return:
+        """
+        token = Tokenizer('.token', self)
+        token.token_init()
+
+    def login_api(self):
+        """
+        Авторизация и получение токена API VK
         """
         self.logger.log('Авторизация')
         http = HttpUtil()
