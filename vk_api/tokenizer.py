@@ -13,11 +13,11 @@ class Tokenizer:
         :return:
         """
         try:
-            with open(self.name, 'r', encoding='utf-8'):
-                return True
+            token = open(self.name, 'r', encoding='utf-8')
+            return token
         except FileNotFoundError:
-            self.api.login_api()
-            token = open(self.name, 'w', encoding='utf-8')
+            self.api.login()
+            token = open(self.name, 'a', encoding='utf-8')
             token.write(self.api.token)
             token.close()
             return False
@@ -34,8 +34,8 @@ class Tokenizer:
             token.close()
             return True
         else:
-            self.api.login_api()
-            token = open(self.name, 'w', encoding='utf-8')
+            self.api.login()
+            token = open(self.name, 'a', encoding='utf-8')
             token.write(self.api.token)
             token.close()
             return False

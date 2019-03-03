@@ -8,7 +8,7 @@ pip install vk-api-boroda34
 ```python
 from vk_api.core.api import VkApi
 
-api = VkApi({
+api = VkApi.login({
     'client_id': config.CLIENT_ID,
     "scope": config.SCOPE,
     "api_v": config.VERSION_API,
@@ -16,8 +16,6 @@ api = VkApi({
     "password": config.PASSWORD,
     "max_timeout": config.MAX_TIMEOUT
 })
-
-api.login()
 ```
 
 Для работы библиотеки потребуется файл ```config.py```

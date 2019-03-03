@@ -32,16 +32,16 @@ class VkApi:
         self.token = None
         self.logger = Logger('vk_api')
 
-    def login(self):
+    def get_token(self, api):
         """
         Проверка на существование уже полученного токена
         Или его повторное получение, в случае его отсутствия
         :return:
         """
-        token = Tokenizer('.token', self)
+        token = Tokenizer('.token', api)
         token.token_init()
 
-    def login_api(self):
+    def login(self):
         """
         Авторизация и получение токена API VK
         """
@@ -56,13 +56,19 @@ class VkApi:
 
         response = http.parse(http.post(self.action, form_el)['content'])
         action = response.find('div', class_='form_item').form.attrs['action']
-        url_token = urlparse(http.get(action)['url'])
-        self.token = parse_qs(url_token.fragment, encoding='utf8')['access_token'][0]
+        response_get_token = http.get(action)
+        url_token = urlparse(response_get_token['url'])
+        try:
+            self.token = parse_qs(url_token.fragment, encoding='utf8')['access_token'][0]
+        except KeyError:
+            self.logger.error(json.loads(response_get_token['content']))
 
-        if self.logger is not None:
+        if self.token is not None:
             self.logger.log('Авторизация завершена')
         else:
             self.logger.error('Ошибка авторизации')
+
+        exit()
 
     def query(self, name, params):
         """
