@@ -16,7 +16,7 @@ class Tokenizer:
             with open(self.name, 'r', encoding='utf-8'):
                 return True
         except FileNotFoundError:
-            self.api.login()
+            self.api.login_api()
             token = open(self.name, 'w', encoding='utf-8')
             token.write(self.api.token)
             token.close()
@@ -34,7 +34,7 @@ class Tokenizer:
             token.close()
             return True
         else:
-            self.api.login()
+            self.api.login_api()
             token = open(self.name, 'w', encoding='utf-8')
             token.write(self.api.token)
             token.close()
