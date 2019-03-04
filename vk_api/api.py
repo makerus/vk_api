@@ -61,7 +61,12 @@ class VkApi:
         try:
             self.token = parse_qs(url_token.fragment, encoding='utf8')['access_token'][0]
         except KeyError:
-            self.logger.error(json.loads(response_get_token['content']))
+            try:
+                json_response = json.loads(response_get_token['content'])
+                self.logger.error(json_response)
+            except json.decoder.JSONDecodeError:
+                self.logger.error("Проверьте данные в конфигурации")
+                exit()
 
         if self.token is not None:
             self.logger.log('Авторизация завершена')
