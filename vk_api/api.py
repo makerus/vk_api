@@ -148,7 +148,12 @@ class VkApi:
 
         while True:
             pts = self.get_ts(server, key, pts['ts'])
-            self.middleware(pts['updates'])
+            if 'updates' not in pts:
+                pts = self.get_long_poll()
+                key = pts['key']
+                server = pts['server']
+            else:
+                self.middleware(pts['updates'])
 
     def long_poll(self):
         """
