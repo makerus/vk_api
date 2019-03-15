@@ -1,7 +1,7 @@
 # vk_api
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Библиотека для работы с API социальной сети ВКонтакте на Python
+Библиотека для работы с API социальной сети ВКонтакте на Python.
 
 ```python
 pip install vk-api-boroda34
@@ -35,9 +35,6 @@ api.get_token(api)
 
 # Опциональные команды
 
-# Работа longPool (запускает отдельный поток)
-api.long_poll()
-
 # Инициализация команд
 api.register_commands(ClassName)
 # Регистрация символа команды
@@ -45,7 +42,8 @@ api.register_symbol_command('#')
 # Регистрация символа ответа
 api.register_symbol_answer('!')
 
-# Дальше может быть расположен любой код
+# Работа longPool (запускает отдельный поток)
+api.long_poll()
 
 ```
 
@@ -55,7 +53,7 @@ api.register_symbol_answer('!')
 CLIENT_ID = 000000  # ID приложения
 VERSION_API = "5.92"  # Версия API
 LEVEL_LOG = 0  # Уровень ошибок 0 - ВСЕ, 1 - ТОЛЬКО INFO и ERRORS, 2 - ТОЛЬКО ERRORS
-MAX_TIMEOUT = 3  # Таймаут от 1 до 3 секунд
+MAX_TIMEOUT = 3  # Таймаут в 3 секунды
 
 # Для пользоавтеля
 SCOPE_USER = "friends,photos,video,status,wall,offline,docs,groups"  # Здесь указаны права доступа

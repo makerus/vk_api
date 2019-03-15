@@ -5,6 +5,8 @@ import threading
 import signal
 import os
 
+import gevent
+
 from vk_api.http_util import HttpUtil
 from urllib.parse import urlparse, parse_qs
 
@@ -109,7 +111,7 @@ class VkApi:
               "&access_token=" + self.token + "&v=" + self.options['api_v']
         query = http.get(url)
         response = json.loads(query['content'])
-        time.sleep(random.randint(1, self.options['max_timeout']))
+        time.sleep(self.timeout())
 
         if 'error' in response:
             return json.loads(query['content'])['error']
@@ -160,8 +162,9 @@ class VkApi:
         Инициализация и запуск процесса LongPoll
         :return:
         """
-        thread = threading.Thread(target=self.init_logn_poll, name='long_poll')
-        thread.start()
+        gevent.joinall([
+            gevent.spawn(self.init_logn_poll())
+        ])
         self.logger.log('Long pull запущен')
 
     def middleware(self, items):
@@ -173,6 +176,7 @@ class VkApi:
         if items is not None:
             for item in items:
                 self.is_command(item)
+
 
     def handler_signal(self, signal_proc, frame):
         """
@@ -239,3 +243,10 @@ class VkApi:
         message = text
         self.query('messages.send', {'peer_id': peer_id, 'random_id': random_id, 'message': message,
                                      'group_id': self.options['group_id']})
+
+    def timeout(self):
+        """
+        Функция реализации таймаута
+        :return:
+        """
+        return self.options['max_timeout']
