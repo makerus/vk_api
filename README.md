@@ -35,15 +35,15 @@ api.get_token(api)
 
 # Опциональные команды
 
+# Работа longPool (запускает отдельный поток)
+api.long_poll()
+
 # Инициализация команд
 api.register_commands(ClassName)
 # Регистрация символа команды
 api.register_symbol_command('#')
 # Регистрация символа ответа
 api.register_symbol_answer('!')
-
-# Работа longPool (запускает отдельный поток)
-api.long_poll()
 
 ```
 

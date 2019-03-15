@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='vk_api_boroda34',
-      version='0.2.3',
+      version='0.2.4',
       description='Библиотека для работы с API социальной сети ВКонтакте',
       author='boroda34',
       url='https://github.com/makerus',
@@ -10,7 +10,6 @@ setup(name='vk_api_boroda34',
           'requests',
           'beautifulsoup4',
           'utils',
-          'gevent'
       ],
       license='MIT',
       packages=find_packages())
